@@ -56,9 +56,10 @@
 
 
 <?php
+
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$nameErr = $emailErr = $nicknameErr = $genderErr = $numberErr = "";
+$name = $email = $nickname = $address = $number = $gender = $comment = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -81,20 +82,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
     
-  if (empty($_POST["website"])) {
-    $website = "";
+  if (empty($_POST["number"])) {
+    $number = "number is required";
   } else {
-    $website = test_input($_POST["website"]);
+    $number = test_input($_POST["number"]);
     // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-      $websiteErr = "Invalid URL"; 
+    if (!preg_match("/^[0-9]*$/",$number)) {
+      $numberErr = "Invalid Number"; 
     }
   }
 
+  if (empty($_POST["nickname"])) {
+    $nickname = "nickname is required";
+  } else {
+    $nickname = test_input($_POST["nickname"]);
+  
   if (empty($_POST["comment"])) {
     $comment = "";
   } else {
     $comment = test_input($_POST["comment"]);
+  }
+  
+    if (empty($_POST["address"])) {
+    $address = "";
+  } else {
+    $address = test_input($_POST["address"]);
   }
 
   if (empty($_POST["gender"])) {
@@ -110,6 +122,7 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+}
 ?>
 
 <h2>FILL THIS UP</h2>
@@ -118,14 +131,26 @@ function test_input($data) {
   Name: <input type="text" name="name" value="<?php echo $name;?>">
   <span class="error">* <?php echo $nameErr;?></span>
   <br><br>
+  
+  Nickname: <input type="text" name="nickname" value="<?php echo $nickname;?>">
+  <span class="error">* <?php echo $nicknameErr;?></span>
+  <br><br>
+  
   E-mail: <input type="text" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
-  Website: <input type="text" name="website" value="<?php echo $website;?>">
-  <span class="error"><?php echo $websiteErr;?></span>
+  
+  Number: <input type="text" name="number" value="<?php echo $number;?>">
+  <span class="error">* <?php echo $numberErr;?></span>
   <br><br>
+  
+  Home Address: <input type="text" name="address" value="<?php echo $address;?>">
+
+  <br><br>
+  
   Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
   <br><br>
+  
   Gender:
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
@@ -135,12 +160,17 @@ function test_input($data) {
 </form>
 
 <?php
+
 echo "<h2>Your Input:</h2>";
 echo $name;
 echo "<br>";
+echo $nickname;
+echo "<br>";
 echo $email;
 echo "<br>";
-echo $website;
+echo $number;
+echo "<br>";
+echo $address;
 echo "<br>";
 echo $comment;
 echo "<br>";
@@ -206,9 +236,5 @@ p {
 
 <button type="button" onclick="document.getElementById('demo').style.fontSize='35px'">CLICK HERE</button>
 
-
-
-
 </body>
-
 </html>
