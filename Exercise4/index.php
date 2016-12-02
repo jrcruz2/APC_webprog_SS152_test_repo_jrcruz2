@@ -61,6 +61,13 @@
 $nameErr = $emailErr = $nicknameErr = $genderErr = $numberErr = "";
 $name = $email = $nickname = $address = $number = $gender = $comment = "";
 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
@@ -116,12 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+
 }
 ?>
 
