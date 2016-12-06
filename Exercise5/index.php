@@ -54,6 +54,17 @@
 
 <img src="iu1.jpg" width="1500" height="500" onmouseover="this.src='iu2.jpg'" onmouseout="this.src='iu1.jpg'"/>
 
+<?php
+include_once 'dbconfig.php';
+// delete condition
+if(isset($_GET['delete_id']))
+{
+ $sql_query="DELETE FROM users WHERE user_id=".$_GET['delete_id'];
+ mysqli_query($con,$sql_query);
+ header("Location: $_SERVER[PHP_SELF]");
+}
+// delete condition
+?>
 
 <?php
 
@@ -183,7 +194,22 @@ echo $gender;
 <br>
 <br>
 
-
+  <?php
+ $sql_query="SELECT * FROM users";
+ $result_set=mysqli_query($con,$sql_query);
+ while($row=mysqli_fetch_row($result_set))
+ {
+  ?>
+        <tr>
+        <td><?php echo $row[1]; ?></td>
+        <td><?php echo $row[2]; ?></td>
+        <td><?php echo $row[3]; ?></td>
+  <td align="center"><a href="javascript:edt_id('<?php echo $row[0]; ?>')"><img src="b_edit.png" align="EDIT" /></a></td>
+        <td align="center"><a href="javascript:delete_id('<?php echo $row[0]; ?>')"><img src="b_drop.png" align="DELETE" /></a></td>
+        </tr>
+        <?php
+ }
+ ?>
 
 <style>
 body {
