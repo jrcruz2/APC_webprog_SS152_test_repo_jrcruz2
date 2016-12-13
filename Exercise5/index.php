@@ -205,7 +205,7 @@ echo $gender;
     </tr>
     <?php
  $sql_query="SELECT * FROM users";
- $result_set=mysqli_query($con,$sql_query);
+ $result_set=mysqli_query($con, $sql_query);
  while($row=mysqli_fetch_row($result_set))
  {
   ?>
@@ -221,6 +221,10 @@ echo $gender;
  ?>
     </table>
 
+	<br>
+	<br>
+	<br>
+	
 <style>
 body {
     background-color: lightblue;
