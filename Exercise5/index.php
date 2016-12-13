@@ -194,7 +194,7 @@ echo $gender;
 <br>
 <br>
 
-  <?php
+ <?php
  $sql_query="SELECT * FROM users";
  $result_set=mysqli_query($con,$sql_query);
  while($row=mysqli_fetch_row($result_set))
