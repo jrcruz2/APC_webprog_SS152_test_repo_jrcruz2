@@ -194,7 +194,16 @@ echo $gender;
 <br>
 <br>
 
- <?php
+<table align="center">
+    <tr>
+    <th colspan="5"><a href="add_data.php">add data here.</a></th>
+    </tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>City Name</th>
+    <th colspan="2">Operations</th>
+    </tr>
+    <?php
  $sql_query="SELECT * FROM users";
  $result_set=mysqli_query($con,$sql_query);
  while($row=mysqli_fetch_row($result_set))
@@ -210,6 +219,7 @@ echo $gender;
         <?php
  }
  ?>
+    </table>
 
 <style>
 body {
