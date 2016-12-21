@@ -4,10 +4,10 @@
 <title>Musouka</title>
 
 <center>
-<img src="logo1.png" width="1500" height="75" align="center">
+<img src="assets/img/logo1.png" width="1500" height="75" align="center">
 <center>
 <style>
-<?php include 'style.css'; ?>
+<?php include 'assets/css/style.css'; ?>
 </style>
 <?php include 'links.php';?>
 </head>
@@ -23,7 +23,7 @@
 </div>
 <body background="pink1.jpg">
 
-<img src="iu1.jpg" width="1500" height="500" onmouseover="this.src='iu2.jpg'" onmouseout="this.src='iu1.jpg'"/>
+<img src="assets/img/iu1.jpg" width="1500" height="500" onmouseover="this.src='assets/img/iu2.jpg'" onmouseout="this.src='assets/img/iu1.jpg'"/>
 
 <p id="demo">My Full Name</p>
 
